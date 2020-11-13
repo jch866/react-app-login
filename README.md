@@ -1,4 +1,4 @@
-# 安装依赖
+## 安装依赖
  redux
  react-redux
  react-router-dom
@@ -8,13 +8,18 @@
  antd
  npm install redux react-redux redux-thunk antd 项目依赖 
  npm install  redux-logger redux-devtools-extension -D   开发依赖
+ npm install http-proxy-middleware -D 解决跨域  
 React.StrictMode
 
-# 搭建服务端
- ## 安装依赖
+## 搭建服务端
+ ### 安装依赖
+ cd server 
  npm install express 
  npm install nodemon -g 
  nodemon index.js  实现热更新;
+ ### 安装验证依赖
+ cd server &&  npm install lodash validator
+
 
 
 
