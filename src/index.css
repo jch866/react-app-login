@@ -15,3 +15,14 @@ code {
 .mainapp{
   color: red;
 }
+.alert-success{
+  color: green;
+}
+.alert-danger{
+  color: red;
+}
+.alert-lists{
+  border-bottom: 1px solid #f0f0f0;
+  margin: 0 20px;
+  padding: 5px 0;
+}

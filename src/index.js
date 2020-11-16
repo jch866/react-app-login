@@ -10,12 +10,14 @@ import 'antd/dist/antd.css'
 import './index.css';
 import routes from "./routes";
 import {BrowserRouter as Router} from "react-router-dom"
-import Nav from "./components/nav"
+import Nav from "./components/nav";
+import FlashMsglists from "./components/flash/Msglists" //消息管理
 const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(logger,thunk)))
 ReactDOM.render(
   <Provider store = {store}>
      <Router routes={routes}>
        <Nav/>
+       <FlashMsglists/>
        {routes}
      </Router>
   </Provider>,

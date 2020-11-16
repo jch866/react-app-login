@@ -30,8 +30,8 @@ router.post('/',(req,res)=>{
     if(!isValid){
         res.status(400).json(errors)
     }
-    // res.send({
-    //     msg:'hello1231'
-    // });
+    res.send({
+        msg:'hello1231'
+    });
 })
 module.exports = router;

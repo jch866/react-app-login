@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Input, Button, Card } from "antd";
+import {withRouter}  from  "react-router-dom"
 const layout = {
   labelCol: {
     span: 8,
@@ -15,7 +16,7 @@ const tailLayout = {
   },
 };
 
-export default class SignupForm extends React.Component {
+class SignupForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,10 +24,19 @@ export default class SignupForm extends React.Component {
       password: "",
       repassword: "",
       email: "",
+      errors:{},
+      loading:false
     };
   }
   onSubmit=(values)=>{
-    this.props.signupActions.userSignupRequest(values)
+    this.setState({errors:{},loading:true})
+    this.props.signupActions.userSignupRequest(values).then((data)=>{
+      //添加数据到redux
+      this.props.flashActions.addFlashMsg({type:'success',text:'注册成功,欢迎您的加入!'})
+      this.props.history.push('/')
+    },(res)=>{
+      console.log(res)
+    })
   }
   render() {
     // const { username, password, repassword, email } = this.state;
@@ -91,7 +101,7 @@ export default class SignupForm extends React.Component {
           </Form.Item>
 
           <Form.Item {...tailLayout}>
-            <Button type="primary" htmlType="submit" >
+            <Button type="primary" htmlType="submit" disabled={this.state.loading}>
               注册
             </Button>
           </Form.Item>
@@ -100,3 +110,4 @@ export default class SignupForm extends React.Component {
     );
   }
 }
+export default withRouter(SignupForm)
