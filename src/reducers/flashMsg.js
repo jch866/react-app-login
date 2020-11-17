@@ -1,8 +1,7 @@
-import { bindActionCreators } from 'redux';
 import {ADD_FLASH_MSG,DEL_FLASH_MSG} from './../consts';
 import shortid from "shortid"
-const state1 = [{id:1,type:"success",text:'测试数据'},{id:2,type:"danger",text:'测试数据'}]
-const flashMsg = (state=state1,action={})=>{
+// const state1 = [{id:1,type:"success",text:'测试数据'},{id:2,type:"danger",text:'测试数据'}]
+const flashMsg = (state=[],action={})=>{
     switch(action.type){
         case ADD_FLASH_MSG:
         return [
@@ -14,7 +13,6 @@ const flashMsg = (state=state1,action={})=>{
             }
         ]
         case DEL_FLASH_MSG:
-   
             const index  = state.findIndex(item=>item.id === action.id);
             // let newstate = [];
             // if(index>=0){
