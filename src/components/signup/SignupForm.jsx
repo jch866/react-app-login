@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Card } from "antd";
+import { Form, Input, Button, Card,message } from "antd";
 import {withRouter}  from  "react-router-dom"
 const layout = {
   labelCol: {
@@ -29,13 +29,22 @@ class SignupForm extends React.Component {
     };
   }
   onSubmit=(values)=>{
+    let {password,repassword} = values;
+    if(password!==repassword){
+        message.error('两次密码不一样！');
+        return 
+    }
     this.setState({errors:{},loading:true})
     this.props.signupActions.userSignupRequest(values).then((data)=>{
-      //添加数据到redux
-      this.props.flashActions.addFlashMsg({type:'success',text:'注册成功,欢迎您的加入!'})
-      this.props.history.push('/')
+       //data:{config,data,headers,request,status,statusText}
+      if(data.status===200){
+          //添加数据到redux
+          this.props.flashActions.addFlashMsg({type:'success',text:'注册成功,欢迎您的加入!'})
+          this.props.history.push('/')
+      }
     },(res)=>{
-      console.log(res)
+      console.log(res) 
+      this.setState({errors:res,loading:false}) 
     })
   }
   render() {
