@@ -25,8 +25,27 @@ class SignupForm extends React.Component {
       repassword: "",
       email: "",
       errors:{},
-      loading:false
+      loading:false,
+      isvalid:false 
     };
+  }
+  checkUsers=(e)=>{
+    let value = e.target.value;
+    if(value===''){return}
+    let {isvalid}=this.state ;
+    this.props.signupActions.checkUser(value).then((data)=>{
+      if(data.status===200){
+        if(data.data.lists[0]){
+          message.error('用户名已经存在！');
+          isvalid = true
+        }else{
+          isvalid = false
+        }
+        this.setState({isvalid})
+      }
+    },(err)=>{
+      console.log(err)
+    })
   }
   onSubmit=(values)=>{
     let {password,repassword} = values;
@@ -49,6 +68,7 @@ class SignupForm extends React.Component {
   }
   render() {
     // const { username, password, repassword, email } = this.state;
+    const {loading,isvalid} = this.state;
     return (
       <Card>
         <Form
@@ -69,7 +89,7 @@ class SignupForm extends React.Component {
               },
             ]}
           >
-            <Input  />
+            <Input onBlur={this.checkUsers}/>
           </Form.Item>
           <Form.Item
             label="邮箱"
@@ -110,7 +130,7 @@ class SignupForm extends React.Component {
           </Form.Item>
 
           <Form.Item {...tailLayout}>
-            <Button type="primary" htmlType="submit" disabled={this.state.loading}>
+            <Button type="primary" htmlType="submit" disabled={loading || isvalid}>
               注册
             </Button>
           </Form.Item>

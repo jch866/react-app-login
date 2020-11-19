@@ -8,5 +8,14 @@ export const userSignupRequest = (userData)=>{
     }
 
 }
+export const checkUser = (value)=>{
+    //thunk
+    const url = `/api/users/${value}`;
+    return dispatch=>{
+        return axios.get(url)
+    }
+
+}
+
 
  
