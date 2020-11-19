@@ -20,10 +20,10 @@ class SignupForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: "",
-      repassword: "",
-      email: "",
+      // username: "",
+      // password: "",
+      // repassword: "",
+      // email: "",
       errors:{},
       loading:false,
       isvalid:false 

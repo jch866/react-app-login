@@ -32,7 +32,7 @@ router.post('/',(req,res)=>{
         //数据库语句
         let sql = "insert into user values (null,?,?,?)"
         let {username,password,email}= req.body
-        let arr= [username,password,email]
+        let arr= [username,email,password]
         sqlfn(sql,arr,function(data){
             // data: OkPacket { fieldCount: 0, affectedRows: 1, insertId: 11, serverStatus: 2, warningCount: 0, message: '', protocol41: true, changedRows: 0}
             if(data.affectedRows){

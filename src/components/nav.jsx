@@ -12,8 +12,11 @@ export default class Nav extends React.Component {
           <Menu.Item >
             <Link to="/">login功能</Link>
           </Menu.Item>
-            <Menu.Item icon={<MailOutlined />}>
+          <Menu.Item icon={<MailOutlined />}>
             <Link to="/signup">注册</Link>
+          </Menu.Item>
+          <Menu.Item icon={<MailOutlined />}>
+            <Link to="/login">登录</Link>
           </Menu.Item>
         </Menu>
       </div>
