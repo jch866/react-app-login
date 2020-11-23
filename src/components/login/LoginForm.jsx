@@ -44,9 +44,11 @@ const layout = {
                 message.error(data.data.message);
                 this.setState({errors:data,loading:false}) 
             }
+        }else{
+          this.setState({errors:data,loading:false}) 
         }
-      },(data)=>{
-        this.setState({errors:data,loading:false}) 
+      }).catch(e=>{
+        this.setState({errors:e,loading:false}) 
       })
     }
     render() {
