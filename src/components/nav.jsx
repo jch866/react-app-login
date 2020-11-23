@@ -35,6 +35,9 @@ class Nav extends React.Component {
           <Menu.Item>
             <Link to="/">login功能</Link>
           </Menu.Item>
+          <Menu.Item>
+            <Link to="/shop">商城</Link>
+          </Menu.Item>
           {isLogined ? logout : logined}
         </Menu>
       </div>
