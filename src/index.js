@@ -18,6 +18,7 @@ import jwtDecode from "jwt-decode"
 const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(logger,thunk)))
 let jwtToken = window.localStorage.getItem('jwtToken');
 if(jwtToken){
+  console.log(jwtDecode(jwtToken))
   setAuthToken(jwtToken)
   store.dispatch(setCurrentUser(jwtDecode(jwtToken)))
 }
