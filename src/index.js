@@ -12,9 +12,15 @@ import routes from "./routes";
 import {BrowserRouter as Router} from "react-router-dom"
 import Nav from "./components/nav";
 import FlashMsglists from "./components/flash/Msglists" //消息管理
-import setAuthToken from "./utils/setAuthToken"
+import setAuthToken from "./utils/setAuthToken";
+import  {setCurrentUser} from "./actions/loginActions"
+import jwtDecode from "jwt-decode"
 const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(logger,thunk)))
-setAuthToken(window.localStorage.getItem('jwtToken'))
+let jwtToken = window.localStorage.getItem('jwtToken');
+if(jwtToken){
+  setAuthToken(jwtToken)
+  store.dispatch(setCurrentUser(jwtDecode(jwtToken)))
+}
 ReactDOM.render(
   <Provider store = {store}>
      <Router routes={routes}>
